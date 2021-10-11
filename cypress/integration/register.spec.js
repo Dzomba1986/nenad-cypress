@@ -6,7 +6,7 @@ describe('register test', () => {
         cy.visit("https://gallery-app.vivifyideas.com/"); 
      });
 
-    it('click login button', () => {
+    it('click register button', () => {
         cy.get('a[href="/register"]').click();
     });
     //////////  POSITIVE CASES ////////////////////////////////

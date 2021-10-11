@@ -3,7 +3,7 @@
 import { loginPage } from '../Page_objects/loginPage';
 const faker = require('faker');
 
-describe('Improved loginPage', () =>{
+describe('upgraded loginPage', () =>{
     let correctEmail = 'abcd@abcd.com';
     let correctPassword = '12341234';
 
@@ -13,7 +13,7 @@ describe('Improved loginPage', () =>{
     }
 
     beforeEach('visit link', () =>{
-            cy.visit('/');
+            cy.visit('https://gallery-app.vivifyideas.com/');
             cy.url().should("contain", "https://gallery-app" )
     })
 
@@ -28,13 +28,8 @@ describe('Improved loginPage', () =>{
     })
 
 
-    it.only('login with random credentials', () => {
+    it('login with random credentials', () => {
        loginPage.login(userData.randomEmail, userData.randomPassword);
-
-        
-});
-
-    it('login with invalid random data', () => {
-
-})
+       loginPage.logoutButton.should('not.exist')    
+    });
 }); 
