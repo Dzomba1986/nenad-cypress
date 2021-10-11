@@ -32,6 +32,26 @@ export default class RegisterPage{
         return cy.get('button[type="submit"]');
     }
 
+    get allGalleriesButton(){
+        return cy.get("[class='nav-link nav-buttons router-link-active']");
+    }
+
+    get myGalleryButton(){
+        return cy.get("a[href='/my-galleries']");
+    }
+
+    get createGalleryButton(){
+        return cy.get("a[href='/create']");
+    }
+
+    get logoutButton(){
+        return cy.get("a[role='button ']");
+    }
+
+    get errorMessage(){
+        return cy.get("p[class='alert alert-danger']");
+    }
+
 
 register (firstName, lastName, email, password){
     this.registerButton.click();

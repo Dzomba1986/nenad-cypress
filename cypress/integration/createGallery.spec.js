@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 import { createGalleryPage } from './../Page_objects/createGallery';
+import { loginPage } from '../Page_objects/loginPage';
 const faker = require('faker');
 
 describe('create gallery page', () =>{
@@ -15,14 +16,22 @@ describe('create gallery page', () =>{
         randomDescription: faker.lorem.word(),
         randomImage: faker.image.animals()
     }
+    before ('log into the app', () =>{
+            cy.loginViaBackend(Cypress.env('validEmail', 'validPassword'));
+         });
+
+         it('visit default url', () => {
+             cy.visit('/create');
+             loginPage.logoutButton.should('be.visible');
+         })
 
     beforeEach('visit link', () =>{
-            cy.visit('https://gallery-app.vivifyideas.com/');
-            cy.url().should("contain", "https://gallery-app");
+        cy.wait(3000);
+        cy.visit('https://gallery-app.vivifyideas.com/');
+        cy.url().should("contain", "https://gallery-app");
     })
 
     it('create gallery with with one image', () => {
-        cy.wait(3000);
         createGalleryPage.login(correctEmail, correctPassword);
         createGalleryPage.loginSubmitButton.should('not.exist');
         createGalleryPage.create(userData.randomTitle, userData.randomDescription, imgUrl);
@@ -31,7 +40,6 @@ describe('create gallery page', () =>{
     });
 
     it('create gallery with two images', () => {
-        cy.wait(3000);
         createGalleryPage.login(correctEmail, correctPassword);
         createGalleryPage.loginSubmitButton.should('not.exist');
         createGalleryPage.create(userData.randomTitle, userData.randomDescription, imgUrl);

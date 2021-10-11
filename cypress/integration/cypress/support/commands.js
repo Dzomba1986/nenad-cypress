@@ -23,15 +23,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('loginViaBackend', (email, password) => {
-    cy.request(
-        'POST',
-        'https://gallery-api.vivifyideas.com/api/auth/login', {
-            "email": "abcd@abcd.com",
-            "password": "12341234"
-        }
-    ).its('body').then((response) => {
-        window.localStorage.setItem('token', response.access_token);
-    });
-});

@@ -44,6 +44,10 @@ export default class CreateGalleryPage{
         return cy.get('button[class="btn btn-custom"]').eq(0);
     }
 
+    get logoutButton(){
+        return cy.get('a[role="button "]');
+    }
+
 
     login (email, password){
         this.loginButton.click();

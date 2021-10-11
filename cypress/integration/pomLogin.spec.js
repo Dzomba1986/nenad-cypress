@@ -17,19 +17,46 @@ describe('upgraded loginPage', () =>{
             cy.url().should("contain", "https://gallery-app" )
     })
 
+    
     it('login with valid credentials', () => {
+        cy.intercept(
+            'POST',
+            'https://gallery-api.vivifyideas.com/api/auth/login', 
+            (req) => {}
+        ).as("validLogin");
+
        loginPage.login(correctEmail, correctPassword);
+
+       cy.wait('@validLogin').then((inteerception) =>{
+           expect(inteerception.respons.satusCode).eq(200);
+       })
+
        loginPage.logoutButton.should('be.visible')
     });
 
     it('logout', () => {
+
+        cy.intercept(
+            'POST',
+            'https://gallery-api.vivifyideas.com/api/auth/login', 
+            (req) => {}
+        ).as("logout");
+
         loginPage.login(correctEmail, correctPassword);
         loginPage.logoutButton.click();
+
+        cy.wait('@logout').then((inteerception) => {
+            expect(interception.response.body.message).eq('Successfully logged out');
+            expect(interception.response.statusCode).eq(200);
+        })
     })
 
 
     it('login with random credentials', () => {
        loginPage.login(userData.randomEmail, userData.randomPassword);
-       loginPage.logoutButton.should('not.exist')    
+       loginPage.logoutButton.should('not.exist');
+        loginPage.errorMessage.should('be.visible');
+        loginPage.errorMessage.should('have.css', 'background-color', 'rgb(248, 215, 218)');
+        loginPage.errorMessage.should('have.text', 'Bad Credentials');
     });
 }); 
