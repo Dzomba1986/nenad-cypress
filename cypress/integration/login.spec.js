@@ -10,42 +10,36 @@ describe('login tests', () => {
     });
 
     it("login with invalid email", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').type('abcde@abcd.com');
         cy.get('input[id="password"]').type('12341234');
         cy.get('button[type="submit"]').click();
     });
 
     it("login with invalid password", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').clear().type('abcd@abcd.com');
         cy.get('input[id="password"]').clear().type('12341233');
         cy.get('button[type="submit"]').click();
     });
 
     it("login without email", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').clear();
         cy.get('input[id="password"]').clear().type('12341233');
         cy.get('button[type="submit"]').click();
     });
 
     it("login without password", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').clear().type('abcd@abcd.com');
         cy.get('input[id="password"]').clear();
         cy.get('button[type="submit"]').click();
     });
 
     it("login without 7 digit password", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').clear().type('abcd@abcd.com');
         cy.get('input[id="password"]').clear().type('1234123');
         cy.get('button[type="submit"]').click();
     });
 
     it("login with valid data", () => {
-        cy.wait(3000);
         cy.get('input[id="email"]').clear().type('abcd@abcd.com');
         cy.get('input[id="password"]').clear().type('12341234');
         cy.get('button[type="submit"]').click();
@@ -56,7 +50,6 @@ describe('login tests', () => {
     //});
 
     it('logout', () => {
-        cy.wait(3000);
         cy.get('a[class="nav-link nav-buttons"]').last().click();
     });
 

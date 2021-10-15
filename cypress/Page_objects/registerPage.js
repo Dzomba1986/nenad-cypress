@@ -1,3 +1,4 @@
+
 export default class RegisterPage{
 
     get registerButton(){
@@ -33,7 +34,7 @@ export default class RegisterPage{
     }
 
     get allGalleriesButton(){
-        return cy.get("[class='nav-link nav-buttons router-link-active']");
+        return cy.get("a[href='/']").eq(1);
     }
 
     get myGalleryButton(){
@@ -48,10 +49,21 @@ export default class RegisterPage{
         return cy.get("a[role='button ']");
     }
 
-    get errorMessage(){
-        return cy.get("p[class='alert alert-danger']");
+    get emailErrorMessage(){
+        return cy.get('p[class="alert alert-danger"]').first();
     }
 
+    get passwordErrorMessage(){
+        return cy.get('.alert');
+    }
+
+    get checkboxErrorMessage(){
+        return cy.get('p[class="alert alert-danger"]').last();
+    }
+
+    get mainTitle(){
+        return cy.get('.title-style');
+    }
 
 register (firstName, lastName, email, password){
     this.registerButton.click();
@@ -59,10 +71,19 @@ register (firstName, lastName, email, password){
     this.lastNameInput.type(lastName);
     this.emailInput.type(email);
     this.passwordInput.type(password);
-    this.confirmationPasswordInput.type(password);
-    this.checboxInput.check();
-    this.submitButton.click();
     }
+
+passwordConfirmation (confirmedPassword){
+    this.confirmationPasswordInput.type(confirmedPassword);
+}
+
+checkbox(){
+    this.checboxInput.check();
+}
+
+submitRegister (){
+    this.submitButton.click();
+    }    
 }
 
 export const registerPage = new RegisterPage();

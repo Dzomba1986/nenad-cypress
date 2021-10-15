@@ -1,4 +1,5 @@
 export default class LoginPage{
+
     get submitButton(){
         return cy.get('button[type="submit"]');
     }
@@ -21,6 +22,10 @@ export default class LoginPage{
 
     get errorMessage(){
         return cy.get('[class="alert alert-danger"]');
+    }
+
+    get loginTitle () {
+        return cy.get('h1');
     }
 
 login (email, password){

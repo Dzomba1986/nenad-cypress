@@ -40,7 +40,6 @@ export default class CreateGalleryPage{
     }
 
     get createGallerySubmitButton(){
-        //return cy.get('form > :nth-child(4)');
         return cy.get('button[class="btn btn-custom"]').eq(0);
     }
 
@@ -48,6 +47,9 @@ export default class CreateGalleryPage{
         return cy.get('a[role="button "]');
     }
 
+    get titleErrorMessage(){
+        return cy.get('.alert');
+    }
 
     login (email, password){
         this.loginButton.click();

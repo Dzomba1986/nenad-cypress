@@ -1,7 +1,7 @@
 {
-    "baseUrl": "https://gallery-app.vivifyideas.com",
+    "baseUrl": "https://gallery-app.vivifyideas.com/",
     "env": {
         "validEmail": "abcd@abcd.com", 
-        "validPassword":"12341234"
+        "validPassword": "12341234"
     }
 }
